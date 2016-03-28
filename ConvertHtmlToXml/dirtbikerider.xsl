@@ -41,9 +41,9 @@
   <xsl:template match="div[@class='article news']/h2" />
   <xsl:template match="div[@class='article news']/div[@id='addthisbox-new']" />
   <xsl:template match="div[@class='article news']/div[@class='article_images']" />
-  <xsl:template match="div[@class='article news']/p//span[contains(text(), 'Published Date:')]" />
+  <xsl:template match="div[@class='article news']/p/span[contains(text(), 'Published Date:')]" />
   <xsl:template match="div[@class='article news']/div[@class='like_link']" />
   <xsl:template match="div[@class='article news']/p[@class='btt']" />
-  <xsl:template match="div[@class='article news']/span[last() and text()[contains(., 'By: ')]]" />
-  <xsl:template match="div[@class='article news']/p//span[last() and text()[contains(., 'Section: ')]]" />
+  <xsl:template match="div[@class='article news']/p/span[last() and text()[contains(., 'By: ')]]" />
+  <xsl:template match="div[@class='article news']/p/span[last() and text()[contains(., 'Section: ')]]" />
 </xsl:stylesheet>
