@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.IO;
+using System.Net;
 using System.Xml;
 using System.Xml.Xsl;
 
@@ -15,7 +16,8 @@ namespace ConvertHtmlToXml
 
 		static void Main(string[] args)
 		{
-			CheckParseHtmlAsXml();
+			ParseDirtbikerider();
+			//CheckParseHtmlAsXml();
 			//CheckParseXml();
 			//CheckParseHtml();
 		}
@@ -75,14 +77,25 @@ namespace ConvertHtmlToXml
 
 		static void CheckParseHtmlAsXml()
 		{
+			CheckParseHtmlAsXml(File.ReadAllText(htmlName), xsltName);
+		}
+
+		static void ParseDirtbikerider()
+		{
+			var wc = new WebClient();
+			CheckParseHtmlAsXml(wc.DownloadString(dirtbikeriderUrl), "dirtbikerider.xsl");
+		}
+
+		static void CheckParseHtmlAsXml(string inputHtml, string xslFileName)
+		{
 			HtmlDocument hdoc = new HtmlDocument();
-			hdoc.LoadHtml(File.ReadAllText(htmlName));
+			hdoc.LoadHtml(inputHtml);
 			hdoc.OptionOutputAsXml = true;
 
 			var xml = GetString(hdoc);
 
 			XslCompiledTransform xslt = new XslCompiledTransform();
-			xslt.Load(xsltName);
+			xslt.Load(xslFileName);
 
 			StringWriter textWriter = new StringWriter();
 			XmlTextWriter writer = new XmlTextWriter(textWriter);
