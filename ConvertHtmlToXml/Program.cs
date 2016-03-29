@@ -16,7 +16,8 @@ namespace ConvertHtmlToXml
 
 		static void Main(string[] args)
 		{
-			ParseDirtbikerider();
+			ParseWebPage("http://www.tmxnews.co.uk/news/motocross-news-s3/A-Highland-challenge-Lampkin-v-Fujinami-i190", "tmxnews.xsl");
+			//ParseDirtbikerider();
 			//CheckParseHtmlAsXml();
 			//CheckParseXml();
 			//CheckParseHtml();
@@ -78,6 +79,12 @@ namespace ConvertHtmlToXml
 		static void CheckParseHtmlAsXml()
 		{
 			CheckParseHtmlAsXml(File.ReadAllText(htmlName), xsltName);
+		}
+
+		static void ParseWebPage(string url, string xslFileName)
+		{
+			var wc = new WebClient();
+			CheckParseHtmlAsXml(wc.DownloadString(url), xslFileName);
 		}
 
 		static void ParseDirtbikerider()
