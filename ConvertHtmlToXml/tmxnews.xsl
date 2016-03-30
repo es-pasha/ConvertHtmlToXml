@@ -11,7 +11,7 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="html">
+  <xsl:template match="span">
     <rss version="2.0">
       <channel>
         <item>
@@ -43,7 +43,8 @@
     </rss>
   </xsl:template>
 
-  <xsl:template match="head | body" />
+  <xsl:template match="html|head|body" />
+  <xsl:template match="comment()"/>
   <xsl:template match="div[@id='cke_pastebin']" />
   <xsl:template match="div[@class='article news']/p/span[last() and text()[contains(., 'Section: ')]]" />
 </xsl:stylesheet>

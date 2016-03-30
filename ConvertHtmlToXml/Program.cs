@@ -12,12 +12,11 @@ namespace ConvertHtmlToXml
 		static string xsltName = "test.xsl";
 		static string htmlName = "test.html";
 		static string xmlName = "test.xml";
-		static string dirtbikeriderUrl = "http://www.dirtbikerider.com/news/motocross-news-s1/Report-Lyng-2016-Maxxis-ACU-British-Motocross-Championship-i12603";
 
 		static void Main(string[] args)
 		{
 			ParseWebPage("http://www.tmxnews.co.uk/news/motocross-news-s3/A-Highland-challenge-Lampkin-v-Fujinami-i190", "tmxnews.xsl");
-			//ParseDirtbikerider();
+			//ParseWebPage("http://www.dirtbikerider.com/news/motocross-news-s1/Report-Lyng-2016-Maxxis-ACU-British-Motocross-Championship-i12603", "dirtbikerider.xsl");
 			//CheckParseHtmlAsXml();
 			//CheckParseXml();
 			//CheckParseHtml();
@@ -85,12 +84,6 @@ namespace ConvertHtmlToXml
 		{
 			var wc = new WebClient();
 			CheckParseHtmlAsXml(wc.DownloadString(url), xslFileName);
-		}
-
-		static void ParseDirtbikerider()
-		{
-			var wc = new WebClient();
-			CheckParseHtmlAsXml(wc.DownloadString(dirtbikeriderUrl), "dirtbikerider.xsl");
 		}
 
 		static void CheckParseHtmlAsXml(string inputHtml, string xslFileName)
