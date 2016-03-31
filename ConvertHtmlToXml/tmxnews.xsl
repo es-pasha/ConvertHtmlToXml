@@ -11,7 +11,7 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="span">
+  <xsl:template match="html">
     <rss version="2.0">
       <channel>
         <item>

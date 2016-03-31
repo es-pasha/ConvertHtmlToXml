@@ -7,37 +7,42 @@
   </xsl:template>
 
   <xsl:template match="html">
-    <rss version="2.0">
-      <channel>
-        <item>
-          <author>
-            <xsl:value-of select="//span[last() and text()[contains(., 'By: ')]]//text()" />
-          </author>
-          <content:encoded>
-            <xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text>
-            <xsl:apply-templates select="//div[@class='article news']|@*|node()" />
-            <xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
-          </content:encoded>
-          <media:content>
-            <xsl:variable name="src" select="//div[@class='article_images']//img//@src"/>
-            <xsl:if test="not(starts-with($src, '/'))">
-              <xsl:attribute name="url">
-                <xsl:value-of select="$src"/>
-              </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="starts-with($src, '/')">
-              <xsl:attribute name="url">
-                <xsl:value-of select="concat('http://www.dirtbikerider.com/', $src)"/>
-              </xsl:attribute>
-            </xsl:if>
+    <channel>
+      <item>
+        <author>
+          <xsl:value-of select="//span[last() and text()[contains(., 'By: ')]]//text()" />
+        </author>
+        <content:encoded>
+          <xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text>
+          <xsl:apply-templates select="//div[@class='article news']|@*|node()" />
+          <xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
+        </content:encoded>
+        <media:content>
+          <xsl:variable name="src" select="//div[@class='article_images']//img//@src"/>
+          <xsl:if test="not(starts-with($src, '/'))">
+            <xsl:attribute name="url">
+              <xsl:value-of select="$src"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:if test="starts-with($src, '/')">
+            <xsl:attribute name="url">
+              <xsl:value-of select="concat('http://www.dirtbikerider.com/', $src)"/>
+            </xsl:attribute>
+          </xsl:if>
 
-          </media:content>
-        </item>
-      </channel>
+        </media:content>
+      </item>
+    </channel>
+  </xsl:template>
+
+  <xsl:template match="span">
+    <rss version="2.0">
+      <xsl:apply-templates />
     </rss>
   </xsl:template>
 
-  <xsl:template match="head | body" />
+  <xsl:template match="head | body " />
+  <xsl:template match="comment()" />
   <xsl:template match="div[@class='article news']/h2" />
   <xsl:template match="div[@class='article news']/div[@id='addthisbox-new']" />
   <xsl:template match="div[@class='article news']/div[@class='article_images']" />

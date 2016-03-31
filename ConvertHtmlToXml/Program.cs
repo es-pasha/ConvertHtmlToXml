@@ -15,8 +15,8 @@ namespace ConvertHtmlToXml
 
 		static void Main(string[] args)
 		{
-			ParseWebPage("http://www.tmxnews.co.uk/news/motocross-news-s3/A-Highland-challenge-Lampkin-v-Fujinami-i190", "tmxnews.xsl");
-			//ParseWebPage("http://www.dirtbikerider.com/news/motocross-news-s1/Report-Lyng-2016-Maxxis-ACU-British-Motocross-Championship-i12603", "dirtbikerider.xsl");
+			//ParseWebPage("http://www.tmxnews.co.uk/news/motocross-news-s3/A-Highland-challenge-Lampkin-v-Fujinami-i190", "tmxnews.xsl");
+			ParseWebPage("http://www.dirtbikerider.com/news/motocross-news-s1/Report-Lyng-2016-Maxxis-ACU-British-Motocross-Championship-i12603", "dirtbikerider.xsl");
 			//CheckParseHtmlAsXml();
 			//CheckParseXml();
 			//CheckParseHtml();
@@ -91,7 +91,6 @@ namespace ConvertHtmlToXml
 			HtmlDocument hdoc = new HtmlDocument();
 			hdoc.LoadHtml(inputHtml);
 			hdoc.OptionOutputAsXml = true;
-
 			var xml = GetString(hdoc);
 
 			XslCompiledTransform xslt = new XslCompiledTransform();
